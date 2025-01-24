@@ -3,12 +3,7 @@ const conexP = require('../config/dbPostgre');
 // función para listar los productos
 exports.indexProd = async (req, res) => {
     try {
-        const consulta = `SELECT p."idProd" AS idprod, p.nombre AS nombre, 
-                                p.stock AS stock, p.precio AS precio, 
-                                p.estado AS estado, c.idcategoria AS idcat, 
-                                c.nombre AS categoria 
-                            FROM productos p
-                            INNER JOIN categorias c ON p.idcategoria = c.idcategoria`;
+        const consulta = `SELECT * FROM consultar_producto($1);`;
 
         const resultado = await conexP.query(consulta);
         
